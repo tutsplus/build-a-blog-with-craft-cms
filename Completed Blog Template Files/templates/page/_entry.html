@@ -1,0 +1,21 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<main role="main">
+
+<article class="blog_entry">
+
+	<div class="entry_content">
+
+		<h1 class="page_title">{{ entry.title }}</h1>
+		
+		{{ entry.body }}
+
+	</div>
+
+</article>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="clearfix">
+	
+	<div class="prev_page">
+		{% if info.prevUrl %}
+		<a href="{{info.prevUrl}}" class="underline_from_right">&larr; Previous Page</a>
+		{% endif %}
+	</div>
+
+	<div class="next_page">
+		{% if info.nextUrl %}
+		<a href="{{info.nextUrl}}" class="underline_from_left">Next Page &rarr;</a>
+		{% endif %}		
+	</div>
+
+</div>

@@ -1,0 +1,21 @@
+<article class="blog_entry">
+
+	{% include "partials/_featured_image.html" %}
+
+	<div class="entry_content">
+
+		<div class="entry_date">{{ entry.postDate | date("M d, Y") }}</div>
+
+		<h2 class="entry_title"><a class="underline_from_left" href="{{ entry.url }}">{{ entry.title }}</a></h2>
+		
+		{% set paragraphs = entry.body|split('</p>') %}
+		{% set teaser = paragraphs|first ~ '</p>' %}
+		{{ teaser|raw }}
+
+		<div class="read_more"><a href="{{entry.url}}" class="underline_from_left">Read More &rarr;</a></div>
+
+		{% include "partials/_entry_categories.html" %}
+
+	</div>
+
+</article>

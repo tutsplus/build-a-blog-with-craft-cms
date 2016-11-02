@@ -1,0 +1,21 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<main role="main">
+
+	<div class="blog_entry">
+		<h2 class="entry_list_title">Entries posted under: {{category}}</h2>
+	</div>
+
+	{% paginate craft.entries.relatedTo(category).limit(blogSettings.postsPerPage) as info, entries %}
+
+	{% for entry in entries %}
+		{% include "partials/_entry_teaser.html" %}
+	{% endfor %}
+
+	{% include "partials/_pagination.html" %}
+
+</main>
+
+{% endblock %}

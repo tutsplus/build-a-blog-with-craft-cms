@@ -1,0 +1,48 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<main role="main">
+
+{% set query = craft.request.getParam('query') %}
+{% set entries = craft.entries.section('blog').search(query).order('score').limit(blogSettings.postsPerPage) %}
+
+{% if entries|length %}
+
+	<div class="blog_entry">
+		<h2 class="entry_list_title">{{ craft.entries.section('blog').search(query) | length | plural('Search Result', 'Search Results')}} for "{{query}}"</h2>
+	</div>
+
+	{% paginate entries as info, entries %}
+
+	{% for entry in entries %}
+		{% include "partials/_entry_teaser.html" %}
+	{% endfor %}
+
+<div class="clearfix">
+	
+	<div class="prev_page">
+		{% if info.prevUrl %}
+		<a href="{{info.prevUrl}}?query={{query}}" class="underline_from_right">&larr; Previous Page</a>
+		{% endif %}
+	</div>
+
+	<div class="next_page">
+		{% if info.nextUrl %}
+		<a href="{{info.nextUrl}}?query={{query}}" class="underline_from_left">Next Page &rarr;</a>
+		{% endif %}		
+	</div>
+
+</div>
+
+{% else %}
+
+	<h1>No Search Results for "{{query}}"</h1>
+
+	<p>Sorry, nothing found.</p>
+
+{% endif %}
+
+</main>
+
+{% endblock %}

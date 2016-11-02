@@ -1,0 +1,27 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<main role="main">
+
+<article class="blog_entry">
+
+	{% include "partials/_featured_image.html" %}
+
+	<div class="entry_content">
+
+		<div class="entry_date">{{ entry.postDate | date("M d, Y") }}</div>
+
+		<h1 class="entry_title">{{ entry.title }}</h1>
+		
+		{{ entry.body }}
+
+		{% include "partials/_entry_categories.html" %}
+
+	</div>
+
+</article>
+
+</main>
+
+{% endblock %}

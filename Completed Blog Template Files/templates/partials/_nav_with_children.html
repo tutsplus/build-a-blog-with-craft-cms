@@ -1,0 +1,14 @@
+{% if entries | length() %}
+	{% nav entry in entries %}
+		<li{% if entry.hasDescendants() %} class="has_child"{% endif %}><a href="{{entry.url}}">{{entry.title}}</a>
+			{% ifchildren %}
+
+				<input type="checkbox" name="open_child" id="cat_{{entry.id}}_child" class="open_child-switch">
+	      <label for="cat_{{entry.id}}_child" class="open_child-label"> </label>
+				<ul class="child_menu">
+					{% children %}
+				</ul>
+			{% endifchildren %}
+		</li>
+	{% endnav %}
+{% endif %}

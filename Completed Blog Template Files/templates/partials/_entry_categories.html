@@ -1,0 +1,21 @@
+{% set categories = entry.blogCategories %}
+
+{% if categories | length %}
+
+<div class="entry_categories">
+	<div class="cat_label">Posted in Categories:</div>
+	<div class="cats">
+		{% nav category in categories %}
+			<div class="cat_item{% if category.hasDescendants() %} has_subcats{% endif %}">
+				<a href="{{category.url}}">{{ category.title }}</a>
+			</div>
+			{% ifchildren %}
+				<div class="sub_cats">
+					{% children %}
+				</div>
+			{% endifchildren %}
+		{% endnav %}
+	</div>
+</div>
+
+{% endif %}

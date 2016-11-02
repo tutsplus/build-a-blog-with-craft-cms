@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto+Slab:300,400" rel="stylesheet">
+	{% includeCssFile "/assets/css/style.css" %}
+</head>
+
+{% set siteBg = "" %}
+{% for asset in craft.assets.source('siteBg') %}
+	{% set siteBg = asset.url %}
+{% endfor %}
+
+<body style="background-image: url('{{siteBg}}');">
+
+	<div class="top_bar">
+		<div class="standard_width clearfix">
+			
+			{% include "partials/_nav.html" %}
+			{% include "partials/_searchbar.html" %}
+
+		</div>
+	</div>
+
+	<div class="wrapper standard_width">
+		<header class="site_header">
+			<h1 class="site_name"><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+		</header>
+
+		{% block content %}{% endblock %}
+
+	</div>
+
+	<footer class="site_footer standard_width">
+		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://craftcms.com">Craft</a>
+	</footer>
+</body>
+</html>
